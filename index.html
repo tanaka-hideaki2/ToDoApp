@@ -13,7 +13,13 @@
     <div id="root"></div>
     <script type ="text/babel">
     (() => {
-      class App extends React.Component {
+          const todos = [
+            {id: 0, title: 'Task 0', isDone: false},
+            {id: 1, title: 'Task 1', isDone: false},
+            {id: 2, title: 'Task 2', isDone: true}
+          ];
+          
+      class App extends React.Component {        
         render() {
           return(
             <div>
