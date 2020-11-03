@@ -18,6 +18,19 @@
             {id: 1, title: 'Task 1', isDone: false},
             {id: 2, title: 'Task 2', isDone: true}
           ];
+
+          function TodoList(props) {
+            const todos = props.todos.map(todo => {
+              return (
+                <li key={todo.id}>{todo.title}</li>
+              );
+            });
+            return (
+              <ul>
+                {todos}
+              </ul>
+            )
+          }
           
       class App extends React.Component {
         constructor() {
