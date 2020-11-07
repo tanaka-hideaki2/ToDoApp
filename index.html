@@ -19,10 +19,22 @@
             {id: 2, title: 'Task 2', isDone: true}
           ];
 
+          function TodoItem(props) {
+            // console.log('propsは',props);
+            return (
+              <li key = {props.todo.id}>
+                {props.todo.title}
+              </li>
+            );
+          }
+
           function TodoList(props) {
+            // console.log('props:',props);
             const todos = props.todos.map(todo => {
               return (
-                <li key={todo.id}>{todo.title}</li>
+                <TodoItem
+                key={todo.id}
+                todo={todo}/>
               );
             });
             return (
