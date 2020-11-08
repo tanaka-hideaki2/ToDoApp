@@ -53,7 +53,7 @@
             });
             return (
               <ul>
-                {todos}
+                {props.todos.length ? todos : <li> Nothing to do!</li>}
               </ul>
             )
           }
