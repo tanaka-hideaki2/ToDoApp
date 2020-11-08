@@ -28,7 +28,9 @@
                   checked={props.todo.isDone}
                   onChange={() => props.checkTodo(props.todo)}
                   />
-                  {props.todo.title}
+                  <span className={props.todo.isDone ? 'done' : ''}>
+                    {props.todo.title}
+                  </span>
                 </label>
               </li>
             );
@@ -79,7 +81,7 @@
         
         render() {
           return(
-            <div>
+            <div className="container">
               <h1>My Todos</h1>
               <TodoList
                 todos={this.state.todos}
