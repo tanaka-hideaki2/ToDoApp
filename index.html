@@ -32,6 +32,9 @@
                     {props.todo.title}
                   </span>
                 </label>
+                <span className="cmd" onClick={() => {
+                  props.deleteTodo(props.todo)
+                }}>[×]</span>
               </li>
             );
           }
@@ -44,6 +47,7 @@
                 key={todo.id}
                 todo={todo}
                 checkTodo= {props.checkTodo}
+                deleteTodo= {props.deleteTodo}
                 />
               );
             });
@@ -61,6 +65,7 @@
             todos: todos
           };
           this.checkTodo = this.checkTodo.bind(this);
+          this.deleteTodo = this.deleteTodo.bind(this);
         }
 
         checkTodo(todo) {
@@ -86,6 +91,7 @@
               <TodoList
                 todos={this.state.todos}
                 checkTodo={this.checkTodo}
+                deleteTodo={this.deleteTodo}
               /> 
             </div>
           )
