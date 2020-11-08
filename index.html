@@ -61,6 +61,22 @@
           this.checkTodo = this.checkTodo.bind(this);
         }
 
+        checkTodo(todo) {
+          //コピーを作成
+          const todos = this.state.todos.map(todo => {
+            return { id:todo.id, title: todo.title, isDone: todo.isDone};
+          });
+
+          const pos = this.state.todos.map(todo => {
+            return todo.id;
+          }).indexOf(todo.id);
+
+          todos[pos].isDone = !todos[pos].isDone;
+          this.setState({
+            todos: todos
+          });
+        }
+        
         render() {
           return(
             <div>
