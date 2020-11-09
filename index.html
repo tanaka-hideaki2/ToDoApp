@@ -57,71 +57,81 @@
               </ul>
             )
           }
+
+          function TodoForm() {
+            return (
+              <form>
+                <input type="text"/>
+                <input type="submit" value="Add"/>
+              </form>
+            )
+          }
           
-      class App extends React.Component {
-        constructor() {
-          super();
-          this.state = {
-            todos: todos
-          };
-          this.checkTodo = this.checkTodo.bind(this);
-          this.deleteTodo = this.deleteTodo.bind(this);
-        }
+          class App extends React.Component {
+            constructor() {
+              super();
+              this.state = {
+                todos: todos
+              };
+              this.checkTodo = this.checkTodo.bind(this);
+              this.deleteTodo = this.deleteTodo.bind(this);
+            }
 
-        checkTodo(todo) {
-          //コピーを作成
-          const todos = this.state.todos.map(todo => {
-            return { id:todo.id, title: todo.title, isDone: todo.isDone};
-          });
+            checkTodo(todo) {
+              //コピーを作成
+              const todos = this.state.todos.map(todo => {
+                return { id:todo.id, title: todo.title, isDone: todo.isDone};
+              });
 
-          const pos = this.state.todos.map(todo => {
-            return todo.id;
-          }).indexOf(todo.id);
+              const pos = this.state.todos.map(todo => {
+                return todo.id;
+              }).indexOf(todo.id);
 
-          todos[pos].isDone = !todos[pos].isDone;
-          // console.log(todos);
-          // console.log(this.state.todos);
-          this.setState({
-            todos: todos
-          });
-        }
+              todos[pos].isDone = !todos[pos].isDone;
+              // console.log(todos);
+              // console.log(this.state.todos);
+              this.setState({
+                todos: todos
+              });
+            }
 
-        deleteTodo(todo) {
-          if (!confirm('are you sure?')) {
-            return;
+            deleteTodo(todo) {
+              if (!confirm('are you sure?')) {
+                return;
+              }
+
+              const todos = this.state.todos.slice();
+              // console.log(todos);
+              // console.log(this.state.todos);
+              const pos = this.state.todos.indexOf(todo);
+
+              todos.splice(pos, 1);
+              this.setState({
+                todos: todos
+              });
+            }
+            
+            render() {
+              return(
+                <div className="container">
+                  <h1>My Todos</h1>
+                  <TodoList
+                    todos={this.state.todos}
+                    checkTodo={this.checkTodo}
+                    deleteTodo={this.deleteTodo}
+                  /> 
+                  <TodoForm/>
+                </div>
+              )
+            }
           }
 
-          const todos = this.state.todos.slice();
-          // console.log(todos);
-          // console.log(this.state.todos);
-          const pos = this.state.todos.indexOf(todo);
+          ReactDOM.render(
+            <App/>,
+            document.getElementById('root')
+          );
 
-          todos.splice(pos, 1);
-          this.setState({
-            todos: todos
-          });
-        }
-        
-        render() {
-          return(
-            <div className="container">
-              <h1>My Todos</h1>
-              <TodoList
-                todos={this.state.todos}
-                checkTodo={this.checkTodo}
-                deleteTodo={this.deleteTodo}
-              /> 
-            </div>
-          )
-        }
-      }
-
-      ReactDOM.render(
-        <App/>,
-        document.getElementById('root')
-      );
-
-    })();
+        })();
     </script>
 
   </body>
