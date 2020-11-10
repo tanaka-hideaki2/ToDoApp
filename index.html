@@ -31,7 +31,7 @@
           function TodoItem(props) {
             // console.log('propsは',props);
             return (
-              <li key = {props.todo.id}>
+              <li>
                 <label>
                   <input type="checkbox"
                   checked={props.todo.isDone}
@@ -167,6 +167,16 @@
             updateItem(e) {
               this.setState({
                 item: e.target.value
+              });
+            }
+
+            componentDidUpdate() {
+              localStorage.setItem('todos', JSON.stringify(this.state.todos));
+            }
+
+            componentDidMount() {
+              this.setState({
+                todos: JSON.parse(localStorage.getItem('todos')) || []
               });
             }
             
