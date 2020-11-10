@@ -15,6 +15,18 @@
     (() => {
           const todos = [];
 
+          function TodoHeader(props) {
+            const remaining = props.todos.filter(todo => {
+              return !todo.isDone;
+            });
+            return(
+              <h1>
+                My todos
+                <span>({remaining.length}/{props.todos.length})</span>
+              </h1>
+            )
+          }
+
           function TodoItem(props) {
             // console.log('propsは',props);
             return (
@@ -146,7 +158,9 @@
             render() {
               return(
                 <div className="container">
-                  <h1>My Todos</h1>
+                  <TodoHeader
+                    todos={this.state.todos}
+                  />
                   <TodoList
                     todos={this.state.todos}
                     checkTodo={this.checkTodo}
